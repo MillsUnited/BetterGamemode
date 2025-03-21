@@ -26,8 +26,8 @@ public class GamemodeSurvival implements CommandExecutor {
             String targetName = args[0];
             Player target = Bukkit.getPlayer(targetName);
             target.setGameMode(GameMode.SURVIVAL);
-            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + playerName + "'s gamemode to survival!"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + player.getName() + "set your gamemode to survival!"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + playerName + "'s gamemode to survival!"));
+            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + player.getName() + "set your gamemode to survival!"));
         }
 
         return false;
