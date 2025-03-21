@@ -25,6 +25,11 @@ public class GamemodeSpectator implements CommandExecutor {
 
             String targetName = args[0];
             Player target = Bukkit.getPlayer(targetName);
+
+            if (playerName.equals(targetName)) {
+                return true;
+            }
+
             target.setGameMode(GameMode.SPECTATOR);
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to spectator!"));
             target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to spectator!"));

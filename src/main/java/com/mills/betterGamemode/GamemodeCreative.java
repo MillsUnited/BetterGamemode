@@ -25,6 +25,11 @@ public class GamemodeCreative implements CommandExecutor {
 
             String targetName = args[0];
             Player target = Bukkit.getPlayer(targetName);
+
+            if (playerName.equals(targetName)) {
+                return true;
+            }
+
             target.setGameMode(GameMode.CREATIVE);
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to creative!"));
             target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to creative!"));
