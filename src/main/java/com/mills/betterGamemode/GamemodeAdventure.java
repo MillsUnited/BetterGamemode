@@ -17,24 +17,30 @@ public class GamemodeAdventure implements CommandExecutor {
             Player player = (Player) sender;
             String playerName = player.getName();
 
-            if (args.length == 0) {
-                player.setGameMode(GameMode.ADVENTURE);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to adventure!"));
-                return true;
+            if (player.hasPermission("gamemode.adventure")) {
+
+                if (args.length == 0) {
+                    player.setGameMode(GameMode.ADVENTURE);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to adventure!"));
+                    return true;
+                }
+
+                String targetName = args[0];
+                Player target = Bukkit.getPlayer(targetName);
+
+                if (playerName.equals(targetName)) {
+                    player.setGameMode(GameMode.ADVENTURE);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to adventure!"));
+                    return true;
+                }
+
+                target.setGameMode(GameMode.ADVENTURE);
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to adventure!"));
+                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to adventure!"));
+
+            } else {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7You dont have permission to do this!"));
             }
-
-            String targetName = args[0];
-            Player target = Bukkit.getPlayer(targetName);
-
-            if (playerName.equals(targetName)) {
-                player.setGameMode(GameMode.ADVENTURE);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to adventure!"));
-                return true;
-            }
-
-            target.setGameMode(GameMode.ADVENTURE);
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to adventure!"));
-            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to adventure!"));
         }
 
         return false;

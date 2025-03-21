@@ -17,24 +17,30 @@ public class GamemodeCreative implements CommandExecutor {
             Player player = (Player) sender;
             String playerName = player.getName();
 
-            if (args.length == 0) {
-                player.setGameMode(GameMode.CREATIVE);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to creative!"));
-                return true;
+            if (player.hasPermission("gamemode.creative")) {
+
+                if (args.length == 0) {
+                    player.setGameMode(GameMode.CREATIVE);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to creative!"));
+                    return true;
+                }
+
+                String targetName = args[0];
+                Player target = Bukkit.getPlayer(targetName);
+
+                if (playerName.equals(targetName)) {
+                    player.setGameMode(GameMode.CREATIVE);
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to creative!"));
+                    return true;
+                }
+
+                target.setGameMode(GameMode.CREATIVE);
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to creative!"));
+                target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to creative!"));
+
+            } else {
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7You dont have permission to do this!"));
             }
-
-            String targetName = args[0];
-            Player target = Bukkit.getPlayer(targetName);
-
-            if (playerName.equals(targetName)) {
-                player.setGameMode(GameMode.CREATIVE);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set your gamemode to creative!"));
-                return true;
-            }
-
-            target.setGameMode(GameMode.CREATIVE);
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7set " + targetName + "'s gamemode to creative!"));
-            target.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lGamemode &8» &7" + playerName + " set your gamemode to creative!"));
         }
         return false;
     }
