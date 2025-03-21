@@ -8,26 +8,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GamemodeTabComplete implements TabCompleter {
+public class GMCTabComplete implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-
-        List<String> gamemodes = Arrays.asList("creative", "survival", "adventure", "spectator");
-
-        if (args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], gamemodes, new ArrayList<>());
-        }
-
-        if (args.length == 2 && gamemodes.contains(args[0].toLowerCase())) {
+        if (args.length == 1 && command.getName().equalsIgnoreCase("gmc")) {
             List<String> playerNames = Bukkit.getOnlinePlayers().stream()
                     .map(Player::getName)
                     .collect(Collectors.toList());
-            return StringUtil.copyPartialMatches(args[1], playerNames, new ArrayList<>());
+            return StringUtil.copyPartialMatches(args[0], playerNames, new ArrayList<>());
         }
 
         return new ArrayList<>();

@@ -6,12 +6,13 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
+        getCommand("gmc").setExecutor(new GamemodeCreative());
+        getCommand("gms").setExecutor(new GamemodeSurvival());
+        getCommand("gmsp").setExecutor(new GamemodeSpectator());
+        getCommand("gma").setExecutor(new GamemodeAdventure());
+        getCommand("gmc").setTabCompleter(new GMCTabComplete());
+        getCommand("gms").setTabCompleter(new GMSTabComplete());
+        getCommand("gma").setTabCompleter(new GMATabComplete());
+        getCommand("gmsp").setTabCompleter(new GMSPTabComplete());
     }
 }
