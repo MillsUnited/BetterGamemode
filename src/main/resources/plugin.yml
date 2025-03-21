@@ -1,0 +1,4 @@
+name: BetterGamemode
+version: '1.0'
+main: com.mills.betterGamemode.Main
+api-version: '1.21'
